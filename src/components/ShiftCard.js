@@ -1,6 +1,20 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome } from '@fortawesome/react-native-fontawesome';
+import { faSun, faMoon, faSunrise } from '@fortawesome/free-solid-svg-icons';
+
+const getIconForShift = (iconName) => {
+  switch (iconName) {
+    case 'sunrise':
+      return faSunrise;
+    case 'sun':
+      return faSun;
+    case 'moon':
+      return faMoon;
+    default:
+      return faSun;
+  }
+};
 
 const ShiftCard = ({ shift }) => {
   const renderEmployees = () => {
@@ -54,8 +68,8 @@ const ShiftCard = ({ shift }) => {
       <View style={[styles.cardContent, { backgroundColor: shift.backgroundColor }]}>
         <View style={styles.iconSection}>
           <View style={[styles.iconContainer, { backgroundColor: shift.iconColor }]}>
-            <Ionicons 
-              name="sunny" 
+            <FontAwesome 
+              icon={getIconForShift(shift.iconName)} 
               size={12} 
               color="#FFFFFF" 
             />
