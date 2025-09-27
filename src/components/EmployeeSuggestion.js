@@ -1,22 +1,10 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { EMPLOYEE_SUGGESTION_CONSTANTS } from '../constants/shiftTimes';
 
 const EmployeeSuggestion = () => {
-  const suggestedEmployees = [
-    {
-      id: 1,
-      name: 'Hương Thảo',
-      position: 'Nv bán hàng • Parttime',
-      avatar: 'https://i.pravatar.cc/40?img=1',
-    },
-    {
-      id: 2,
-      name: 'Lê Tuấn',
-      position: 'Nv bán hàng • Partti',
-      avatar: 'https://i.pravatar.cc/40?img=2',
-    }
-  ];
+  const suggestedEmployees = EMPLOYEE_SUGGESTION_CONSTANTS.SUGGESTED_EMPLOYEES;
 
   const renderEmployeeCard = (employee) => (
     <TouchableOpacity key={employee.id} style={styles.employeeCard}>
@@ -30,11 +18,11 @@ const EmployeeSuggestion = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Đề xuất nhân viên</Text>
+      <Text style={styles.title}>{EMPLOYEE_SUGGESTION_CONSTANTS.TITLE}</Text>
       
       <TouchableOpacity style={styles.autoCaButton}>
-        <Ionicons name="star" size={16} color="#FFFFFF" />
-        <Text style={styles.autoCaText}>AutoCa</Text>
+        <Ionicons name={EMPLOYEE_SUGGESTION_CONSTANTS.AUTO_CA_ICON} size={16} color="#FFFFFF" />
+        <Text style={styles.autoCaText}>{EMPLOYEE_SUGGESTION_CONSTANTS.AUTO_CA_TEXT}</Text>
       </TouchableOpacity>
 
       <ScrollView 

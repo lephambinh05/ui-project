@@ -1,58 +1,55 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, ScrollView, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { EMPLOYEE_NAMES, AVATAR_URLS, EMPLOYEE_ROLES, EMPLOYEE_TYPES, NAVIGATION_ITEMS } from '../constants/shiftTimes';
 
 const Sidebar = ({ isVisible, onClose, selectedView, onViewChange }) => {
   const staffMembers = [
     {
       id: 1,
-      name: 'Hương Thảo',
-      role: 'Bán hàng',
-      type: 'Parttime',
-      avatar: 'https://i.pravatar.cc/40?img=1'
+      name: EMPLOYEE_NAMES[8], // Hương Thảo
+      role: EMPLOYEE_ROLES[0], // Bán hàng
+      type: EMPLOYEE_TYPES[1], // Parttime
+      avatar: AVATAR_URLS[0]
     },
     {
       id: 2,
-      name: 'Mai Anh',
-      role: 'Bán hàng',
-      type: 'Parttime',
-      avatar: 'https://i.pravatar.cc/40?img=2'
+      name: EMPLOYEE_NAMES[5], // Mai Anh
+      role: EMPLOYEE_ROLES[0], // Bán hàng
+      type: EMPLOYEE_TYPES[1], // Parttime
+      avatar: AVATAR_URLS[1]
     },
     {
       id: 3,
-      name: 'Tuấn Minh',
-      role: 'Thu ngân',
-      type: 'Parttime',
-      avatar: 'https://i.pravatar.cc/40?img=3'
+      name: EMPLOYEE_NAMES[9], // Tuấn Minh
+      role: EMPLOYEE_ROLES[1], // Thu ngân
+      type: EMPLOYEE_TYPES[1], // Parttime
+      avatar: AVATAR_URLS[2]
     },
     {
       id: 4,
-      name: 'Mai Anh',
-      role: 'Bán hàng',
-      type: 'Parttime',
-      avatar: 'https://i.pravatar.cc/40?img=4'
+      name: EMPLOYEE_NAMES[5], // Mai Anh
+      role: EMPLOYEE_ROLES[0], // Bán hàng
+      type: EMPLOYEE_TYPES[1], // Parttime
+      avatar: AVATAR_URLS[3]
     },
     {
       id: 5,
-      name: 'Lê Bình An',
-      role: 'Pha chế',
-      type: 'Parttime',
-      avatar: 'https://i.pravatar.cc/40?img=5'
+      name: EMPLOYEE_NAMES[10], // Lê Bình An
+      role: EMPLOYEE_ROLES[2], // Pha chế
+      type: EMPLOYEE_TYPES[1], // Parttime
+      avatar: AVATAR_URLS[4]
     },
     {
       id: 6,
-      name: 'Mai Anh',
-      role: 'Bán hàng',
-      type: 'Parttime',
-      avatar: 'https://i.pravatar.cc/40?img=6'
+      name: EMPLOYEE_NAMES[5], // Mai Anh
+      role: EMPLOYEE_ROLES[0], // Bán hàng
+      type: EMPLOYEE_TYPES[1], // Parttime
+      avatar: AVATAR_URLS[0]
     }
   ];
 
-  const navigationItems = [
-    { key: 'month', label: 'Tháng' },
-    { key: 'week', label: 'Tuần' },
-    { key: 'day', label: 'Ngày' }
-  ];
+  const navigationItems = NAVIGATION_ITEMS;
 
   if (!isVisible) return null;
 

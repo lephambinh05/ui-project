@@ -1,3 +1,6 @@
+import { SHIFT_TIMES, EMPLOYEE_NAMES, AVATAR_URLS } from '../constants/shiftTimes';
+import { COLORS } from '../constants/colors';
+
 // Generate fixed shift data based on current date
 const generateShiftsForDate = (date) => {
   const dayOfWeek = date.getDay();
@@ -9,27 +12,27 @@ const generateShiftsForDate = (date) => {
       {
         id: `${date.getDate()}-1`,
         title: 'Ca sáng',
-        startTime: '07:00',
-        endTime: '11:00',
-        backgroundColor: '#FEF7E0',
-        iconColor: '#FFD700',
+        startTime: SHIFT_TIMES.MORNING.START,
+        endTime: SHIFT_TIMES.MORNING.END,
+        backgroundColor: COLORS.MORNING_BG,
+        iconColor: COLORS.MORNING_ICON,
         iconName: 'sunrise',
         employees: [
-          { id: 1, name: 'Nguyễn Văn A', avatar: 'https://i.pravatar.cc/32?img=1' },
-          { id: 2, name: 'Trần Thị B', avatar: 'https://i.pravatar.cc/32?img=2' },
+          { id: 1, name: EMPLOYEE_NAMES[0], avatar: AVATAR_URLS[0] },
+          { id: 2, name: EMPLOYEE_NAMES[1], avatar: AVATAR_URLS[1] },
         ],
         status: 'normal'
       },
       {
         id: `${date.getDate()}-2`,
         title: 'Ca trưa',
-        startTime: '12:00',
-        endTime: '17:00',
-        backgroundColor: '#FCE8E6',
-        iconColor: '#FF69B4',
+        startTime: SHIFT_TIMES.AFTERNOON.START,
+        endTime: SHIFT_TIMES.AFTERNOON.END,
+        backgroundColor: COLORS.AFTERNOON_BG,
+        iconColor: COLORS.AFTERNOON_ICON,
         iconName: 'sun', // mặt trời
         employees: [
-          { id: 3, name: 'Lê Thị C', avatar: 'https://i.pravatar.cc/32?img=3' },
+          { id: 3, name: EMPLOYEE_NAMES[2], avatar: AVATAR_URLS[2] },
         ],
         status: 'missing',
         missingText: 'Thiếu nv'
@@ -37,13 +40,13 @@ const generateShiftsForDate = (date) => {
       {
         id: `${date.getDate()}-3`,
         title: 'Ca tối',
-        startTime: '17:00',
-        endTime: '23:00',
-        backgroundColor: '#E8EAF6',
-        iconColor: '#9370DB',
+        startTime: SHIFT_TIMES.EVENING.START,
+        endTime: SHIFT_TIMES.EVENING.END,
+        backgroundColor: COLORS.EVENING_BG,
+        iconColor: COLORS.EVENING_ICON,
         iconName: 'moon',
         employees: [
-          { id: 4, name: 'Phạm Thị D', avatar: 'https://i.pravatar.cc/32?img=4' },
+          { id: 4, name: EMPLOYEE_NAMES[3], avatar: AVATAR_URLS[3] },
         ],
         status: 'normal'
       }
@@ -53,15 +56,15 @@ const generateShiftsForDate = (date) => {
       {
         id: `${date.getDate()}-1`,
         title: 'Ca sáng',
-        startTime: '07:00',
-        endTime: '11:00',
-        backgroundColor: '#FEF7E0',
-        iconColor: '#FFD700',
+        startTime: SHIFT_TIMES.MORNING.START,
+        endTime: SHIFT_TIMES.MORNING.END,
+        backgroundColor: COLORS.MORNING_BG,
+        iconColor: COLORS.MORNING_ICON,
         iconName: 'sunrise',
         employees: [
-          { id: 1, name: 'Nguyễn Văn A', avatar: 'https://i.pravatar.cc/32?img=1' },
-          { id: 2, name: 'Trần Thị B', avatar: 'https://i.pravatar.cc/32?img=2' },
-          { id: 3, name: 'Lê Thị C', avatar: 'https://i.pravatar.cc/32?img=3' },
+          { id: 1, name: EMPLOYEE_NAMES[0], avatar: AVATAR_URLS[0] },
+          { id: 2, name: EMPLOYEE_NAMES[1], avatar: AVATAR_URLS[1] },
+          { id: 3, name: EMPLOYEE_NAMES[2], avatar: AVATAR_URLS[2] },
         ],
         task: 'Kiểm tra kho',
         status: 'normal'
@@ -69,14 +72,14 @@ const generateShiftsForDate = (date) => {
       {
         id: `${date.getDate()}-2`,
         title: 'Ca trưa',
-        startTime: '12:00',
-        endTime: '17:00',
-        backgroundColor: '#FCE8E6',
-        iconColor: '#FF69B4',
+        startTime: SHIFT_TIMES.AFTERNOON.START,
+        endTime: SHIFT_TIMES.AFTERNOON.END,
+        backgroundColor: COLORS.AFTERNOON_BG,
+        iconColor: COLORS.AFTERNOON_ICON,
         iconName: 'sun', // mặt trời
         employees: [
-          { id: 4, name: 'Phạm Thị D', avatar: 'https://i.pravatar.cc/32?img=4' },
-          { id: 5, name: 'Hoàng Thị E', avatar: 'https://i.pravatar.cc/32?img=5' },
+          { id: 4, name: EMPLOYEE_NAMES[3], avatar: AVATAR_URLS[3] },
+          { id: 5, name: EMPLOYEE_NAMES[4], avatar: AVATAR_URLS[4] },
         ],
         task: 'Phục vụ khách',
         status: 'normal'
@@ -84,10 +87,10 @@ const generateShiftsForDate = (date) => {
       {
         id: `${date.getDate()}-3`,
         title: 'Ca tối',
-        startTime: '17:00',
-        endTime: '23:00',
-        backgroundColor: '#E8EAF6',
-        iconColor: '#9370DB',
+        startTime: SHIFT_TIMES.EVENING.START,
+        endTime: SHIFT_TIMES.EVENING.END,
+        backgroundColor: COLORS.EVENING_BG,
+        iconColor: COLORS.EVENING_ICON,
         iconName: 'moon',
         employees: [
           { id: 6, name: 'Vũ Thị F', avatar: 'https://i.pravatar.cc/32?img=6' },

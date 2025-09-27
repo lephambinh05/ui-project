@@ -5,8 +5,8 @@ import Calendar from '../components/Calendar';
 import ShiftList from '../components/ShiftList';
 
 const WorkShiftScreen = () => {
-  const [selectedDate, setSelectedDate] = useState(24);
-  const [currentMonth, setCurrentMonth] = useState('Tháng 4');
+  const [selectedDate, setSelectedDate] = useState(new Date().getDate());
+  const [currentMonth, setCurrentMonth] = useState(new Date().toLocaleDateString('vi-VN', { month: 'long' }));
 
   return (
     <View style={styles.container}>

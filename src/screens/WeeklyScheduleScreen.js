@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
 import Header from '../components/Header';
-import Calendar from '../components/Calendar';
+import WeeklyCalendar from '../components/WeeklyCalendar';
 import WeeklyGrid from '../components/WeeklyGrid';
 import EmployeeSuggestion from '../components/EmployeeSuggestion';
 import Sidebar from '../components/Sidebar';
@@ -9,7 +9,7 @@ import Sidebar from '../components/Sidebar';
 const WeeklyScheduleScreen = () => {
   const [selectedDate, setSelectedDate] = useState(new Date().getDate());
   const [currentWeek, setCurrentWeek] = useState(new Date());
-  const [currentWeekString, setCurrentWeekString] = useState('Tuần hiện tại');
+  const [currentWeekString, setCurrentWeekString] = useState('');
   const [sidebarVisible, setSidebarVisible] = useState(false);
   const [selectedView, setSelectedView] = useState('week');
 
@@ -37,12 +37,12 @@ const WeeklyScheduleScreen = () => {
   return (
     <View style={styles.container}>
       <Header 
-        currentWeek={currentWeekString} 
-        onWeekChange={setCurrentWeek}
+        currentWeek={currentWeek} 
+        onWeekChange={handleWeekChange}
         onMenuPress={() => setSidebarVisible(true)}
       />
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
-        <Calendar 
+        <WeeklyCalendar 
           selectedDate={selectedDate}
           onDateSelect={setSelectedDate}
           currentWeek={currentWeek}

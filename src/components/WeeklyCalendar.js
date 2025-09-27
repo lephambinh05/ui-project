@@ -1,37 +1,65 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
-const WeeklyCalendar = ({ selectedDate, onDateSelect }) => {
-  const daysOfWeek = [
-    { day: 'Ngày', subDay: '/Giờ', date: '', isTimeLabel: true },
-    { day: '25', subDay: 'Thứ 2', date: 25 },
-    { day: '26', subDay: 'Thứ 3', date: 26 },
-    { day: '27', subDay: 'Thứ 4', date: 27 },
-    { day: '28', subDay: 'Thứ 5', date: 28 },
-    { day: '29', subDay: 'Thứ 6', date: 29 },
-    { day: '30', subDay: 'Thứ 7', date: 30 },
-    { day: '01', subDay: 'CN', date: 1 }
-  ];
+const WeeklyCalendar = ({ selectedDate, onDateSelect, currentWeek }) => {
+  const [weekDates, setWeekDates] = useState([]);
 
-  const getDateIndicators = (date) => {
-    if (date === 1) {
+  // Generate week dates dynamically based on current date
+  useEffect(() => {
+    generateWeekDates();
+  }, [currentWeek]);
+
+  const generateWeekDates = () => {
+    const baseDate = currentWeek || new Date();
+    const dayOfWeek = baseDate.getDay();
+    const monday = new Date(baseDate);
+    monday.setDate(baseDate.getDate() - (dayOfWeek === 0 ? 6 : dayOfWeek - 1));
+    
+    const dates = [];
+    
+    // Add time label column
+    dates.push({ day: 'Ngày', subDay: '/Giờ', date: '', isTimeLabel: true });
+    
+    // Generate 7 days starting from Monday
+    for (let i = 0; i < 7; i++) {
+      const date = new Date(monday);
+      date.setDate(monday.getDate() + i);
+      
+      dates.push({
+        day: date.getDate().toString(),
+        subDay: date.toLocaleDateString('vi-VN', { weekday: 'long' }).replace('Thứ ', 'Thứ '),
+        date: date.getDate(),
+        fullDate: date,
+        isCurrentMonth: date.getMonth() === baseDate.getMonth(),
+        isToday: date.toDateString() === new Date().toDateString()
+      });
+    }
+    
+    setWeekDates(dates);
+  };
+
+  const getDateIndicators = (dateInfo) => {
+    if (dateInfo.isToday) {
       return ['#FF6B35', '#FFD23F', '#8B5CF6'];
     }
     return ['#CCCCCC'];
   };
 
-  const getDateColors = (date) => {
-    if (date === 1) {
+  const getDateColors = (dateInfo) => {
+    if (dateInfo.isToday) {
       return { dateColor: '#20B2AA', dayColor: '#20B2AA' };
+    }
+    if (!dateInfo.isCurrentMonth) {
+      return { dateColor: '#CCCCCC', dayColor: '#CCCCCC' };
     }
     return { dateColor: '#333333', dayColor: '#999999' };
   };
 
   const renderDateCell = (dayInfo, index) => {
     const { day, subDay, date, isTimeLabel } = dayInfo;
-    const indicators = date ? getDateIndicators(date) : [];
+    const indicators = date ? getDateIndicators(dayInfo) : [];
     const isSelected = selectedDate === date;
-    const colors = date ? getDateColors(date) : {};
+    const colors = date ? getDateColors(dayInfo) : {};
 
     return (
       <TouchableOpacity
@@ -80,7 +108,7 @@ const WeeklyCalendar = ({ selectedDate, onDateSelect }) => {
   return (
     <View style={styles.container}>
       <View style={styles.daysRow}>
-        {daysOfWeek.map((dayInfo, index) => renderDateCell(dayInfo, index))}
+        {weekDates.map((dayInfo, index) => renderDateCell(dayInfo, index))}
       </View>
     </View>
   );
@@ -104,8 +132,8 @@ const styles = StyleSheet.create({
   timeLabelCell: {
     width: 60,
     alignItems: 'center',
-    paddingVertical: 8,
-    paddingHorizontal: 0,
+    paddingVertical: 12,
+    paddingHorizontal: 8,
     backgroundColor: '#FFFFFF',
     borderRightWidth: 1,
     borderRightColor: '#E8EAED',
@@ -113,8 +141,8 @@ const styles = StyleSheet.create({
   dateCell: {
     flex: 1,
     alignItems: 'center',
-    paddingVertical: 8,
-    paddingHorizontal: 0,
+    paddingVertical: 12,
+    paddingHorizontal: 8,
     backgroundColor: '#FFFFFF',
     borderRightWidth: 1,
     borderRightColor: '#E8EAED',
@@ -143,12 +171,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   dateNumber: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
-    marginBottom: 2,
+    marginBottom: 4,
   },
   dayText: {
-    fontSize: 12,
+    fontSize: 14,
     fontWeight: '500',
     textAlign: 'center',
   },
