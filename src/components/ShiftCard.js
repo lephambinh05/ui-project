@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
-import { FontAwesome } from '@fortawesome/react-native-fontawesome';
-import { faSun, faMoon, faSunrise } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 
 const getIconForShift = (iconName) => {
   switch (iconName) {
     case 'sunrise':
-      return faSunrise;
+      return faSun; // Dùng faSun thay vì faSunrise
     case 'sun':
       return faSun;
     case 'moon':
@@ -45,7 +45,7 @@ const ShiftCard = ({ shift }) => {
     if (shift.status === 'missing') {
       return (
         <View style={styles.statusContainer}>
-          <Ionicons name="add" size={12} color="#F44336" />
+          <FontAwesomeIcon icon={faSun} size={12} color="#F44336" />
           <Text style={styles.missingText}>{shift.missingText}</Text>
         </View>
       );
@@ -54,7 +54,7 @@ const ShiftCard = ({ shift }) => {
     if (shift.task) {
       return (
         <View style={styles.statusContainer}>
-          <Ionicons name="calendar" size={12} color="#666666" />
+          <FontAwesomeIcon icon={faSun} size={12} color="#666666" />
           <Text style={styles.taskText}>{shift.task}</Text>
         </View>
       );
@@ -68,7 +68,7 @@ const ShiftCard = ({ shift }) => {
       <View style={[styles.cardContent, { backgroundColor: shift.backgroundColor }]}>
         <View style={styles.iconSection}>
           <View style={[styles.iconContainer, { backgroundColor: shift.iconColor }]}>
-            <FontAwesome 
+            <FontAwesomeIcon 
               icon={getIconForShift(shift.iconName)} 
               size={12} 
               color="#FFFFFF" 
